@@ -1,7 +1,13 @@
 {
   "name": "bun-sample",
+  "description": "bunのサンプルコード",
+  "repository": "https://github.com/makoto-developer/bun-sample",
+  "version": "0.0.1",
+  "private": true,
+  "author": "makoto-developer",
   "module": "index.ts",
   "type": "module",
+  "license": "UNLICENSE",
   "devDependencies": {
     "bun-types": "latest"
   },
