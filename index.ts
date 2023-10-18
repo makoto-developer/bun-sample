@@ -5,14 +5,31 @@ app.listen(3000, () => {
  console.log("Bun Server started on port 3000");
 })
 
-const todosMap: Map<Number, String> = new Map();
+function getUniqueStr(myStrong?: number): string {
+ let strong = 1000;
+ if (myStrong) strong = myStrong;
+ return (
+     new Date().getTime().toString(16) +
+     Math.floor(strong * Math.random()).toString(16)
+ );
+}
+
+type Status = 'Ready' |'Wip' |'DONE' |'Cancel'
+
+type Todo = {
+ id: number,
+ title: string,
+ details: string,
+ status: Status,
+}
+const todosMap: Map<String, Todo> = new Map();
 
 app.post('/todos', (req, res) => {
  if (typeof req.body === 'object') {
-  const todo: any = req.body.todo;
-  const todo_id = todo.id;
-  todosMap.set(todo_id, todo);
-  res.status(201).json(todo);
+  const new_todo: Exclude<Todo, 'status'> = req.body.todo;
+  const todo_id = getUniqueStr()
+  todosMap.set(todo_id, {...new_todo, status: 'Wip'});
+  res.status(201).json({...new_todo, todo_id});
  } else {
   res.status(400).json({error: "Invalid todo"});
  }

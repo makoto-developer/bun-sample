@@ -1,5 +1,7 @@
 # bun-sample
 
+## Get Starting
+
 To install dependencies:
 
 ```bash
@@ -12,4 +14,20 @@ To run:
 bun run index.ts
 ```
 
-This project was created using `bun init` in bun v1.0.6. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+## 動作確認
+
+追加
+
+```shell
+$ curl http://localhost:3000/todos -XPOST -H "Content-Type: application/json" -d '{"todo": {"title": "buy sho-yu", "details": "go sumit store."}}'
+{"title":"buy sho-yu","details":"go sumit store.","todo_id":"18b4302ecf3249"}
+```
+
+取得
+
+```shell
+$ curl http://localhost:3000/todos/18b4302ecf3249 
+{"title":"buy sho-yu","details":"go sumit store."}
+```
+
+
