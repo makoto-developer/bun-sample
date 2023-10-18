@@ -30,4 +30,7 @@ $ curl http://localhost:3000/todos/18b4302ecf3249
 {"title":"buy sho-yu","details":"go sumit store."}
 ```
 
+## References
+
+- https://bun.sh/
 
