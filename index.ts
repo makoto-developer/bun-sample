@@ -1,8 +1,10 @@
 import server from 'bunrest';
 
 const app = server();
-app.listen(3000, () => {
- console.log("Bun Server started on port 3000");
+
+const port = process.env.APP_PORT || 3000
+app.listen(port, () => {
+ console.log(`Bun Server started on port ${port}`);
 })
 
 function getUniqueStr(myStrong?: number): string {
