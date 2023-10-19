@@ -27,14 +27,12 @@ type Todo = {
 const todosMap: Map<String, Todo> = new Map();
 
 app.post('/todos', (req, res) => {
- if (typeof req.body === 'object') {
-  const new_todo: Exclude<Todo, 'status'> = req.body.todo;
-  const todo_id = getUniqueStr()
-  todosMap.set(todo_id, {...new_todo, status: 'Wip'});
-  res.status(201).json({...new_todo, todo_id});
- } else {
-  res.status(400).json({error: "Invalid todo"});
- }
+ if (!req.body) return res.status(400).json({error: "body is not valid."});
+ if (!(typeof req.body === 'object')) return res.status(400).json({error: "Invalid todo"});
+ const new_todo: Exclude<Todo, 'status'> = req.body.todo;
+ const todo_id = getUniqueStr()
+ todosMap.set(todo_id, {...new_todo, status: 'Wip'});
+ res.status(201).json({...new_todo, todo_id});
 })
 
 app.get('/todos/:id', (req, res) => {
